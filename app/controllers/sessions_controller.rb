@@ -8,9 +8,8 @@ class SessionsController < ApplicationController
   end
 
   # POST /session
-  def create 
-    user_detail = 
-       UserDetail.authenticate(params[:login], params[:password])
+  def create
+    user_detail = UserDetail.authenticate(params[:login], params[:password])
     if user_detail
       self.current_user = user_detail
       uri = session[:original_uri]
