@@ -1,5 +1,5 @@
 /* Global styles */
-* 
+*
 /* Application layout classes */
 .header {
   height: 5em;
@@ -18,17 +18,11 @@
 }
 
 .flash_notice {
-  color: #ccffaa;
+  color: #4caf50; // green
 }
 
 .flash_error {
-  color: #ff8899;
-}
-
-.flash_message {
-  position: absolute;
-  top: 1.2em;
-  left: 0.5em;
+  color: #f44336; // red
 }
 
 .main-input-area{
