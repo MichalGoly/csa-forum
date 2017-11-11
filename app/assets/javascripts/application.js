@@ -15,3 +15,5 @@
 //= require jquery-ui/autocomplete
 //= require turbolinks
 //= require_tree .
+//= require materialize-sprockets
+//= require materialize/extras/nouislider
