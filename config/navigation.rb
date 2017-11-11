@@ -7,7 +7,7 @@ SimpleNavigation::Configuration.run do |navigation|
   # navigation.renderer = Your::Custom::Renderer
 
   # Specify the class that will be applied to active navigation items. Defaults to 'selected'
-  # navigation.selected_class = 'your_selected_class'
+  navigation.selected_class = 'active'
 
   # Specify the class that will be applied to the current leaf of
   # active navigation items. Defaults to 'simple-navigation-active-leaf'
@@ -47,7 +47,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #           :method - Specifies the http-method for the generated link - default is :get.
     #           :highlights_on - if autohighlighting is turned off and/or you want to explicitly specify
     #                            when the item should be highlighted, you can set a regexp which is matched
-    #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>. 
+    #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
     if session[:user_id]
       show_user = user_url(id: session[:user_id])
@@ -66,7 +66,6 @@ SimpleNavigation::Configuration.run do |navigation|
     # but normally if the hash table is the last parameter of the method
     # call then we can leave off the braces (it is not ambiguous)
     primary.item :home, 'Home', '/home', highlights_on: /(^\/$)|(^\/home$)/
-    primary.item :jobs, 'Jobs', '/jobs'
     # The following tab should only be displayed if a user is logged in.
     # The current_user method is defined in application_controller.rb
     # in the controllers folder. If a user is logged in it will return a UserDetail object,
