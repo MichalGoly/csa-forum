@@ -12,17 +12,20 @@
 
 ActiveRecord::Schema.define(version: 20170825081708) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "broadcasts", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_broadcasts_on_user_id"
   end
 
   create_table "broadcasts_feeds", id: false, force: :cascade do |t|
-    t.integer "broadcast_id"
-    t.integer "feed_id"
+    t.bigint "broadcast_id"
+    t.bigint "feed_id"
     t.index ["broadcast_id"], name: "index_broadcasts_feeds_on_broadcast_id"
     t.index ["feed_id"], name: "index_broadcasts_feeds_on_feed_id"
   end
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170825081708) do
   end
 
   create_table "images", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "photo_file_name"
     t.string "photo_content_type"
     t.integer "photo_file_size"
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 20170825081708) do
     t.string "login"
     t.string "salt"
     t.string "crypted_password"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_user_details_on_user_id"
   end
 
@@ -63,4 +66,9 @@ ActiveRecord::Schema.define(version: 20170825081708) do
     t.index ["surname"], name: "index_users_on_surname"
   end
 
+  add_foreign_key "broadcasts", "users"
+  add_foreign_key "broadcasts_feeds", "broadcasts"
+  add_foreign_key "broadcasts_feeds", "feeds"
+  add_foreign_key "images", "users"
+  add_foreign_key "user_details", "users"
 end
