@@ -1,0 +1,53 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    machine: true
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Docker Compose
+          command: |
+            set -x
+            sudo chown -R $(whoami) /usr/local/bin
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
+
+      - run:
+          name: docker compose build image
+          command: |
+            set -x
+            docker-compose build
+            docker-compose up -d
+
+      - run:
+          name: setup postgres for testing
+          command: |
+            docker-compose run -e "RAILS_ENV=test" web rake db:create
+            docker-compose run -e "RAILS_ENV=test" web rake db:migrate
+            docker-compose run -e "RAILS_ENV=test" web rake db:seed
+
+      - run:
+          name: run tests
+          command: |
+            docker-compose run -e "RAILS_ENV=test" web rake test
+
+      # Circle CI -> Heroku access
+      - add_ssh_keys:
+          fingerprints:
+            - "49:4f:6c:a6:09:f5:a5:90:9f:7e:98:7b:e2:f4:88:ca"
+
+      # only deploy the master branch
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              chmod +x deploy.sh
+              ./deploy.sh
+            fi
