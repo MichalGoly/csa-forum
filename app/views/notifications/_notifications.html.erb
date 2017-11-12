@@ -1,8 +1,8 @@
-<!-- Code taken and modified by cwl from Kieran Dunbar's assignment solution 2016-17 -->
-<div id="notification_feed">
+<ul class="collection with-header">
+  <li class="collection-header"><h4>Notifications</h4></li>
   <% if @notifications.length > 0 %>
       <% @notifications.each do |notification| %>
           <%= render partial: 'notifications/notification', locals: {notification: notification} %>
       <% end %>
   <% end %>
-</div>
+</ul>

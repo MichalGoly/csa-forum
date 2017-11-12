@@ -1,19 +1,12 @@
-<div class="notification">
-  <div class="left">
-    <%= image_for(notification.user, :small, true) %>
-  </div>
-  <div class="right">
-    <div class="user">
-      <a href="<%= user_path(notification.user.id) %>">
+<li class="collection-item avatar">
+  <%= image_for(notification.user, :small, true) %>
+  <span class="title">
+    <a href="<%= user_path(notification.user.id) %>">
         <%= notification.user.firstname %> <%= notification.user.surname %>
-      </a>
-    </div>
-    <div class="timestamp">
-      <a href="<%= broadcast_path(notification.id) %>">
-        <%= notification.created_at.strftime("%d/%m/%y %H:%M:%S") %>
-      </a>
-    </div>
-    <div class="content"><%= notification.content %></div>
-  </div>
-  <br style="clear: both"/>
-</div>
+    </a>
+  </span>
+  <p>
+    <%= notification.content %>
+  </p>
+  <span class="secondary-content"><%= notification.created_at.strftime("%d/%m/%y %H:%M:%S") %><span>
+</li>

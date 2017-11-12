@@ -2,10 +2,10 @@
   <% user = current_user
      if !user %>
         <li>Welcome Guest&nbsp;&nbsp;&nbsp;</li>
-        <li><%= button_to 'Login', new_session_path, method: :get, class: 'btn pink' %></li>
+        <li><%= button_to 'Login', new_session_path, method: :get, class: 'btn' %></li>
   <% end %>
   <% if user %>
       <li>Welcome <%= user.login %>&nbsp;&nbsp;&nbsp;</li>
-      <li><%= button_to 'Logout', session_path, method: :delete, class: 'btn pink' %></li>
+      <li><%= button_to 'Logout', session_path, method: :delete, class: 'btn' %></li>
   <% end %>
 </ul>

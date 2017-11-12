@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825081708) do
+ActiveRecord::Schema.define(version: 20171112134110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20170825081708) do
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "date", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_topics_on_user_id"
+  end
+
   create_table "user_details", force: :cascade do |t|
     t.string "login"
     t.string "salt"
@@ -70,5 +79,6 @@ ActiveRecord::Schema.define(version: 20170825081708) do
   add_foreign_key "broadcasts_feeds", "broadcasts"
   add_foreign_key "broadcasts_feeds", "feeds"
   add_foreign_key "images", "users"
+  add_foreign_key "topics", "users"
   add_foreign_key "user_details", "users"
 end
