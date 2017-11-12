@@ -10,7 +10,7 @@ User.transaction do
                        password: 'secret',
                        user: user)
   end
-  
+
   # Create one special admin user
   user = User.create!(surname: 'Loftus',
                       firstname: 'Chris',
@@ -20,7 +20,7 @@ User.transaction do
   UserDetail.create!(login: 'admin',
                      password: 'taliesin',
                      user: user)
-                     
+
   # Create some dummy feeds
   Feed.create!(name: 'twitter')
   Feed.create!(name: 'facebook')

@@ -1,17 +1,5 @@
 /* Global styles */
-* {
-  margin: 0;
-  font-family: "Arial";
-}
-
-body {
-  background-color: #C5F1F9;
-}
-
-h1 {
-  padding-top: 1em;
-}
-
+*
 /* Application layout classes */
 .header {
   height: 5em;
@@ -30,17 +18,11 @@ h1 {
 }
 
 .flash_notice {
-  color: #ccffaa;
+  color: #4caf50; // green
 }
 
 .flash_error {
-  color: #ff8899;
-}
-
-.flash_message {
-  position: absolute;
-  top: 1.2em;
-  left: 0.5em;
+  color: #f44336; // red
 }
 
 .main-input-area{
@@ -266,6 +248,3 @@ div {
     list-style: square;
   }
 }
-
-
-

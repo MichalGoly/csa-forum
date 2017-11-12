@@ -48,3 +48,13 @@
 @import "materialize/components/date_picker/default.date";
 @import "materialize/components/date_picker/default.time";
 @import "materialize/extras/nouislider";
+
+/* label focus color */
+  .input-field input:focus + label {
+    color: #e91e63  !important;
+}
+/* label underline focus color */
+  .input-field input:focus {
+    border-bottom: 1px solid #e91e63  !important;
+    box-shadow: 0 1px 0 0 #e91e63  !important;
+  }
