@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :topic_title %>
   </div>
 
-  <div class="field">
+  <div>
     <%= form.label :date %>
-    <%= form.datetime_select :date, id: :topic_date %>
+    <%= form.date_field :date, id: :topic_date, :value => Time.now.strftime('%Y-%m-%d'), :disabled => true %>
   </div>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id, id: :topic_user_id %>
   </div>
