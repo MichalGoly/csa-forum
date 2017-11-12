@@ -1,5 +1,5 @@
 <div>
-  <h1><%= I18n.t('users.editing-account') %></h1>
+  <h2><%= I18n.t('users.editing-account') %></h2>
 
   <%= form_for(@user, html: {multipart: true}) do |f| %>
       <% if @user.errors.any? %>
@@ -19,31 +19,31 @@
 
       <div>
         <%= hidden_field_tag 'page', @current_page %>
-        <div>
+        <div class="input-field">
           <b><%= f.label :firstname, I18n.t('firstname') %></b><br/>
           <%= f.text_field :firstname, autofocus: 'autofocus' %><br/><br/>
         </div>
-        <div>
+        <div class="input-field">
           <b><%= f.label :surname, I18n.t('surname') %></b><br/>
           <%= f.text_field :surname %><br/><br/>
         </div>
-        <div>
+        <div class="input-field">
           <b><%= f.label :email, I18n.t('email') %></b><br/>
           <%= f.email_field :email %><br/><br/>
         </div>
-        <div>
+        <div class="input-field">
           <b><%= f.label :phone, I18n.t('phone') %></b><br/>
           <%= f.phone_field :phone %><br/><br/>
         </div>
-        <div>
+        <div class="input-field">
           <b><%= f.label :grad_year, I18n.t('grad-year') %></b><br/>
           <%= f.text_field :grad_year %><br/><br/>
         </div>
-        <div>
+        <div class="input-field">
           <b><%= f.label :jobs, I18n.t('jobs') %></b>
           <%= f.check_box :jobs %><br/><br/>
         </div>
-        <div>
+        <div class="input-field">
           <b><%= label :user, I18n.t('image') %></b><br/>
           <%= file_field_tag :image_file %>
         </div>
