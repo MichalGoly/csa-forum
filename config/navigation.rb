@@ -84,6 +84,9 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :profile, 'Profile', show_user,
                  highlights_on: /\/users\/\d/,
                  if: Proc.new {current_user}
+    primary.item :topics, 'Forum', topics_path,
+                 highlights_on: /(^\/topics$)|(\/topics\/new)|(\/topics\?)/,
+                 if: Proc.new {current_user}
     # I want to highlight the Users tab for /users and /users/search etc URLs
     # However, I don't want to highlight for /users/:id since that is covered by
     # the profile tab. We can use a :highlights_on regular expression to do this
