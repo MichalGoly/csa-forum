@@ -16,11 +16,6 @@
     <%= form.text_field :title, id: :topic_title %>
   </div>
 
-  <div>
-    <%= form.label :date %>
-    <%= form.date_field :date, id: :topic_date, :value => Time.now.strftime('%Y-%m-%d'), :disabled => true %>
-  </div>
-
   <div class="input-field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id, id: :topic_user_id %>

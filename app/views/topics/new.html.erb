@@ -1,5 +1,5 @@
 <h2>New Thread</h2>
 
-<%= render 'form', topic: @topic %>
+<%= render '/posts/form', post: @post %>
 
-<%= link_to 'Back', topics_path %>
+<%= link_to 'Back', topics_path, class: 'btn-flat' %>

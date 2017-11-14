@@ -14,7 +14,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
-    @topic = Topic.new
+    @post = Post.new
   end
 
   # GET /topics/1/edit
