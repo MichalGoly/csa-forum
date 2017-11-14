@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112134110) do
+ActiveRecord::Schema.define(version: 20171114162805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 20171112134110) do
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
     t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.datetime "date", null: false
+    t.bigint "user_id"
+    t.bigint "topic_id"
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_posts_on_parent_id"
+    t.index ["topic_id"], name: "index_posts_on_topic_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -79,6 +93,9 @@ ActiveRecord::Schema.define(version: 20171112134110) do
   add_foreign_key "broadcasts_feeds", "broadcasts"
   add_foreign_key "broadcasts_feeds", "feeds"
   add_foreign_key "images", "users"
+  add_foreign_key "posts", "posts", column: "parent_id"
+  add_foreign_key "posts", "topics"
+  add_foreign_key "posts", "users"
   add_foreign_key "topics", "users"
   add_foreign_key "user_details", "users"
 end
