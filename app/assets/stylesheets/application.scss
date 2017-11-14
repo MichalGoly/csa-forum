@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require jquery-ui/autocomplete
+ *= require material_icons
  */
  @import "materialize/components/color";
  $primary-color: color("indigo", "base") !default;
