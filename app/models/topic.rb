@@ -1,6 +1,6 @@
 class Topic < ApplicationRecord
   belongs_to :user
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   def post_wrappers
     # 1. Iterate over all posts of the topic
