@@ -3,16 +3,32 @@ class Topic < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   def post_wrappers
-    # 1. Iterate over all posts of the topic
-    # 2. Recursively find the number of parent nodes for each Post
-    # 3. Set the number as the offset, add to out
-    # 4. Return out
-    out = Array.new
+    # 1. Iterate over all posts of this topic
+    # 2. Find the parent node
+    # 3. Create an empty array for the output
+    # 4. Perform a traversal over the nodes
+    # 5. At each node, find the depth, construct a PostWrapper and store in out
+    root = nil
     self.posts.each do |p|
-      offset = p.number_of_parents
-      out.push(PostWrapper.new(p, offset))
+      if p.is_parent
+        root = p
+        break
+      end
     end
+    out = Array.new
+    traverse(root, out)
     return out
+  end
+
+  def traverse(root, out)
+    offset = root.number_of_parents
+    out.push(PostWrapper.new(root, offset))
+    if root.children.exists?
+      sorted = root.children.sort_by(&:date)
+      sorted.each do |child|
+        self.traverse(child, out)
+      end
+    end
   end
 end
 
