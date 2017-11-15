@@ -19,7 +19,8 @@
     <%= form.label :body %>
     <%= form.text_area(:body) %>
   </div>
-  <%= form.text_field :parent_id, id: :post_parent_id, :value => @parent_id, :hidden => true %>
+  <%= form.text_field :parent_id, id: :post_parent_id, :value => @post.parent_id, :hidden => true %>
+  <%= form.text_field :topic_id, id: :post_parent_id, :value => @post.topic_id, :hidden => true %>
 
   <div class="actions">
     <%= form.submit %>

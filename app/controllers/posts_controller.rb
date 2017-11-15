@@ -15,12 +15,13 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-    if params.has_key?(:parent_id)
-      @post.parent_id = params[:parent_id]
+    if params.has_key?(:post_id)
+      @post.parent_id = params[:post_id]
     end
     @post.user = current_user.user
     if params.has_key?(:topic_id)
       @post.topic = Topic.find(params[:topic_id])
+      @post.title = @post.topic.title
     else
       redirect_to topics_url
     end
@@ -36,10 +37,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user.user
     current_date = Time.now
-    if params.has_key?(:topic_id)
-      # post is a reply to a different post
-      @post.topic = Topic.find(params[:topic_id])
-    else
+
+    if @post.topic.nil?
+      # post in not a reply to a different post
       topic = Topic.new
       topic.title = @post.title
       topic.user = @post.user

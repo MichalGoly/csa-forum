@@ -3,7 +3,8 @@
 <h2>Forum</h2>
 <ul>
   <% @topic.post_wrappers.each do |pw| %>
-    <li><%= pw.post.title %> Offset: <%= pw.offset %></li>
+    <li><%= pw.post.title %> Offset: <%= pw.offset %>
+      <%= link_to 'Reply', new_post_path(:topic_id => @topic.id, :post_id => pw.post.id) %></li>
   <% end %>
 </ul>
 
