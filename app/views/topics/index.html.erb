@@ -21,7 +21,7 @@
       topics_sorted.each do |topic|
     %>
       <tr>
-        <td><%= topic.date %></td>
+        <td><%= topic.date.strftime("%d/%m/%y %H:%M:%S") %></td>
         <td><%= topic.title %></td>
         <td><%= topic.user.firstname %> <%= topic.user.surname %></td>
         <td><span class="new badge">4</span></td>
