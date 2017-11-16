@@ -16,7 +16,10 @@
   </thead>
 
   <tbody>
-    <% @topics.each do |topic| %>
+    <%
+      topics_sorted = @topics.sort_by(&:date).reverse
+      topics_sorted.each do |topic|
+    %>
       <tr>
         <td><%= topic.date %></td>
         <td><%= topic.title %></td>
