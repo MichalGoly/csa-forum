@@ -26,7 +26,7 @@
           <td>Anonymous</td>
         <% end %>
         <td><span class="new badge">4</span></td>
-        <td>0</td>
+        <td><%= topic.posts.length %></td>
         <td><%= link_to 'Show', topic %></td>
         <td><%= link_to_if is_owner_or_admin(topic), 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
