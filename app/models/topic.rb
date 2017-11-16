@@ -4,6 +4,8 @@ class Topic < ApplicationRecord
   belongs_to :user, :optional => true
   has_many :posts, dependent: :destroy
 
+  self.per_page = 8
+
   def post_wrappers
     # 1. Iterate over all posts of this topic
     # 2. Find the parent node

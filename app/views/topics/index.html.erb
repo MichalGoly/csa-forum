@@ -17,8 +17,9 @@
 
   <tbody>
     <%
-      topics_sorted = @topics.sort_by(&:date).reverse
-      topics_sorted.each do |topic|
+      # topics_sorted = @topics.sort_by(&:date).reverse
+      # topics_sorted.each do |topic|
+      @topics.each do |topic|
     %>
       <tr>
         <td><%= topic.date.strftime("%d/%m/%y %H:%M:%S") %></td>
@@ -36,5 +37,9 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
+<div class="digg_pagination">
+  <div>
+    <%= page_entries_info @topics %>
+  </div>
+  <%= will_paginate @topics, container: false %>
+</div>
