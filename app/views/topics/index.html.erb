@@ -34,7 +34,7 @@
           <td><span class="new badge"><%= u_posts.length %></span></td>
         <% end %>
         <td><p class="right-align clear-margin"><%= topic.posts.length %></p></td>
-        <td><%= link_to 'Show', topic %></td>
+        <td><%= link_to 'Show', topic_path(topic, page: @topics.current_page) %></td>
         <td><%= link_to_if is_owner_or_admin(topic), 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

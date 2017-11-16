@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h2>Forum</h2>
-<%= link_to 'Back', topics_path, class: "btn-flat"%>
+<%= link_to 'Back', topics_path(page: @current_page), class: "btn-flat"%>
 <% @topic.post_wrappers.each do |pw| %>
   <div class="row">
     <div class="col s<%= 12 - pw.offset %> offset-s<%= pw.offset %>">
