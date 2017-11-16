@@ -9,8 +9,10 @@
         <div class="card-content">
           <span class="card-title">
             <div class="row">
-              <div class="col s9"><%= pw.post.title %></div>
-              <div class="col s3"><h6 class="right-align grey-text"><%= pw.post.date.strftime("%d/%m/%y %H:%M:%S") %></h6></div>
+              <div class="col s7"><%= pw.post.title %></div>
+              <div class="col s5">
+                <h6 class="right-align grey-text"><%= pw.post.user.firstname%> <%= pw.post.user.surname%> - <%= pw.post.date.strftime("%d/%m/%y %H:%M:%S") %></h6>
+              </div>
             </div>
           </span>
           <p><%= pw.post.body %></p>
