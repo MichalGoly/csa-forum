@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114162805) do
+ActiveRecord::Schema.define(version: 20171116171448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 20171114162805) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "posts_reads", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "topic_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_posts_reads_on_post_id"
+    t.index ["topic_id"], name: "index_posts_reads_on_topic_id"
+    t.index ["user_id"], name: "index_posts_reads_on_user_id"
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "date", null: false
@@ -96,6 +107,9 @@ ActiveRecord::Schema.define(version: 20171114162805) do
   add_foreign_key "posts", "posts", column: "parent_id"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
+  add_foreign_key "posts_reads", "posts"
+  add_foreign_key "posts_reads", "topics"
+  add_foreign_key "posts_reads", "users"
   add_foreign_key "topics", "users"
   add_foreign_key "user_details", "users"
 end

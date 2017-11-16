@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   belongs_to :topic
   belongs_to :parent, class_name: "Post", :optional => true
   has_many :children, class_name: "Post", foreign_key: :parent_id, dependent: :destroy
+  has_many :posts_reads, class_name: "PostsRead", dependent: :destroy
 
   # Recursively calculates the number of nodes above this one
   def number_of_parents

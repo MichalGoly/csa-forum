@@ -25,8 +25,15 @@
         <% else %>
           <td>Anonymous</td>
         <% end %>
-        <td><span class="new badge">4</span></td>
-        <td><%= topic.posts.length %></td>
+        <%
+           u_posts = topic.unread_posts(current_user.id)
+           if u_posts.length == 0
+        %>
+          <td><p class="right-align clear-margin">0</p></td>
+        <% else %>
+          <td><span class="new badge"><%= u_posts.length %></span></td>
+        <% end %>
+        <td><p class="right-align clear-margin"><%= topic.posts.length %></p></td>
         <td><%= link_to 'Show', topic %></td>
         <td><%= link_to_if is_owner_or_admin(topic), 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
