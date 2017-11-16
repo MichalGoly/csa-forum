@@ -55,12 +55,28 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
-    @topic.destroy
     respond_to do |format|
-      format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
-      format.json { head :no_content }
+      if is_owner_or_admin(@topic)
+        @topic.destroy
+        format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to topics_url, notice: 'You are not the owner of this thread!' }
+      end
     end
   end
+
+  def is_owner_or_admin(topic)
+    if topic.user.nil? && is_admin?
+      return true
+    elsif (!topic.user.nil? && (is_admin? || topic.user.id == current_user.id))
+      return true
+    else
+      return false
+    end
+  end
+
+  helper_method :is_owner_or_admin
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   def login_from_session
     self.current_user =
         UserDetail.find_by_id(session[:user_id]) if session[:user_id]
@@ -98,7 +98,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   # Store the URI of the current request in the session.
   #
   # We can return to this location by calling #redirect_back_or_default.
@@ -139,4 +139,3 @@ class ApplicationController < ActionController::Base
   end
 
 end
-

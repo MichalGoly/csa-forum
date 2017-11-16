@@ -16,11 +16,7 @@
   </thead>
 
   <tbody>
-    <%
-      # topics_sorted = @topics.sort_by(&:date).reverse
-      # topics_sorted.each do |topic|
-      @topics.each do |topic|
-    %>
+    <% @topics.each do |topic| %>
       <tr>
         <td><%= topic.date.strftime("%d/%m/%y %H:%M:%S") %></td>
         <td><%= topic.title %></td>
@@ -32,7 +28,7 @@
         <td><span class="new badge">4</span></td>
         <td>0</td>
         <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to_if is_owner_or_admin(topic), 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
