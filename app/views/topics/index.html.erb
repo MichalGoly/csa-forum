@@ -23,7 +23,11 @@
       <tr>
         <td><%= topic.date.strftime("%d/%m/%y %H:%M:%S") %></td>
         <td><%= topic.title %></td>
-        <td><%= topic.user.firstname %> <%= topic.user.surname %></td>
+        <% if topic.user %>
+          <td><%= topic.user.firstname %> <%= topic.user.surname %></td>
+        <% else %>
+          <td>Anonymous</td>
+        <% end %>
         <td><span class="new badge">4</span></td>
         <td>0</td>
         <td><%= link_to 'Show', topic %></td>

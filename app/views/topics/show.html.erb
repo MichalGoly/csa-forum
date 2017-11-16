@@ -11,7 +11,11 @@
             <div class="row">
               <div class="col s7"><%= pw.post.title %></div>
               <div class="col s5">
-                <h6 class="right-align grey-text"><%= pw.post.user.firstname%> <%= pw.post.user.surname%> - <%= pw.post.date.strftime("%d/%m/%y %H:%M:%S") %></h6>
+                <% if pw.post.user %>
+                  <h6 class="right-align grey-text"><%= pw.post.user.firstname%> <%= pw.post.user.surname%> - <%= pw.post.date.strftime("%d/%m/%y %H:%M:%S") %></h6>
+                <% else %>
+                  <h6 class="right-align grey-text">Anonymous - <%= pw.post.date.strftime("%d/%m/%y %H:%M:%S") %></h6>
+                <% end %>
               </div>
             </div>
           </span>

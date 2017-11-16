@@ -19,9 +19,12 @@
     <%= form.label :body %>
     <%= form.text_area(:body) %>
   </div>
+  <p>
+     <input type="checkbox" id="anonymous" name="anonymous"/>
+     <label for="anonymous">Post as anonymous</label>
+   </p>
   <%= form.text_field :parent_id, id: :post_parent_id, :value => @post.parent_id, :hidden => true %>
   <%= form.text_field :topic_id, id: :post_parent_id, :value => @post.topic_id, :hidden => true %>
-
   <div class="actions">
     <%= form.submit %>
   </div>

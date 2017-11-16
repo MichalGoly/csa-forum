@@ -35,7 +35,9 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    @post.user = current_user.user
+    if !params.has_key?(:anonymous)
+        @post.user = current_user.user
+    end
     current_date = Time.now
 
     if @post.topic.nil?

@@ -1,8 +1,10 @@
 class Post < ApplicationRecord
-  belongs_to :user
+  validates_presence_of :title, :body, :date
+
+  belongs_to :user, :optional => true
   belongs_to :topic
   belongs_to :parent, class_name: "Post", :optional => true
-  has_many :children, class_name: "Post", foreign_key: :parent_id
+  has_many :children, class_name: "Post", foreign_key: :parent_id, dependent: :destroy
 
   # Recursively calculates the number of nodes above this one
   def number_of_parents
