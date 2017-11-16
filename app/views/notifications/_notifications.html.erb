@@ -1,5 +1,5 @@
-<ul class="collection with-header">
-  <li class="collection-header"><h4>Notifications</h4></li>
+<ul class="collection indigo with-header" style="border:0;">
+  <li class="collection-header indigo"><h4>Notifications</h4></li>
   <% if @notifications.length > 0 %>
       <% @notifications.each do |notification| %>
           <%= render partial: 'notifications/notification', locals: {notification: notification} %>

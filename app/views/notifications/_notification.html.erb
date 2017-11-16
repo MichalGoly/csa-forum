@@ -1,12 +1,12 @@
-<li class="collection-item avatar">
+<li class="collection-item avatar indigo">
   <%= image_for(notification.user, :small, true) %>
   <span class="title">
-    <a href="<%= user_path(notification.user.id) %>">
+    <a class="white-text" href="<%= user_path(notification.user.id) %>">
         <%= notification.user.firstname %> <%= notification.user.surname %>
     </a>
   </span>
   <p>
     <%= notification.content %>
   </p>
-  <span class="secondary-content"><%= notification.created_at.strftime("%d/%m/%y %H:%M:%S") %><span>
+  <span class="secondary-content white-text"><%= notification.created_at.strftime("%d/%m/%y %H:%M:%S") %><span>
 </li>
