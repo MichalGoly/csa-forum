@@ -27,8 +27,8 @@ Rails.application.routes.draw do
 
   resources :topics, except: [:edit, :update]
 
-  # no point to list all posts
-  resources :posts
+  # no point showing all posts in a separate page or showing specific posts
+  resources :posts, except: [:index, :show, :edit]
 
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
