@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     # We add a special route to support the search field
     get 'search', on: :collection
   end
-  
+
   # At the moment we only provide a JSON web service
   # API for user account managment. This is provided
   # as an example. See the rest_client folder.
@@ -24,6 +24,11 @@ Rails.application.routes.draw do
 
   # This is just to support the landing page
   get 'home', to: 'home#index', as: :home
+
+  resources :topics, except: [:edit, :update]
+
+  # no point showing all posts in a separate page or showing specific posts
+  resources :posts, except: [:index, :show, :edit]
 
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

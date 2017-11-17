@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Forum</h2>
+
+<%= link_to 'Create Thread', new_topic_path, class: 'btn' %>
+<table class="bordered">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Unread Posts</th>
+      <th>Total Posts</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= topic.date.strftime("%d/%m/%y %H:%M:%S") %></td>
+        <td><%= topic.title %></td>
+        <% if topic.user %>
+          <td><%= topic.user.firstname %> <%= topic.user.surname %></td>
+        <% else %>
+          <td>Anonymous</td>
+        <% end %>
+        <%
+           u_posts = topic.unread_posts(current_user.id)
+           if u_posts.length == 0
+        %>
+          <td><p class="right-align clear-margin">0</p></td>
+        <% else %>
+          <td><span class="new badge"><%= u_posts.length %></span></td>
+        <% end %>
+        <td><p class="right-align clear-margin"><%= topic.posts.length %></p></td>
+        <td><%= link_to 'Show', topic_path(topic, page: @topics.current_page) %></td>
+        <td><%= link_to_if is_owner_or_admin(topic), 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="digg_pagination">
+  <div>
+    <%= page_entries_info @topics %>
+  </div>
+  <%= will_paginate @topics, container: false %>
+</div>

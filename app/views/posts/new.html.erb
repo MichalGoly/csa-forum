@@ -1,0 +1,8 @@
+<h2>New Post</h2>
+
+<%= render 'form', post: @post %>
+
+  <div class="col s11">
+    <%= link_to 'Back', topic_path(@post.topic.id), class: 'btn-flat' %>
+  </div>
+</div>

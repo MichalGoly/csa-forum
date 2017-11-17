@@ -13,18 +13,18 @@ module UsersHelper
       user_image = user.image.photo.url(size)
       image_text = "Image of #{user.firstname} #{user.surname}"
       image_link = link_to_user ? user : user.image.photo.url
-      link_to image_tag(user_image, class: 'image-tag',
+      link_to image_tag(user_image, class: 'image-tag circle',
                         alt: image_text,
                         title: image_text, border: '0'),
               image_link
     else
       # Creates a non-clickable default image
       image_tag("blank-cover_#{size}.png",
-                class: 'image-tag', alt: 'No photo available',
+                class: 'image-tag circle', alt: 'No photo available',
                 title: 'No photo available', border: '0')
     end
   end
-  
+
   def remote_image_for(user, page, size = :medium)
     if user.image
       link_to_rem user, page, user.image.photo.url(size),
