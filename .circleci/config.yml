@@ -43,6 +43,8 @@ jobs:
           name: cucumber tests
           command: |
             docker-compose run -e "RAILS_ENV=test" web rake db:drop
+            docker-compose run -e "RAILS_ENV=test" web rake db:create
+            docker-compose run -e "RAILS_ENV=test" web rake db:migrate
             docker-compose run -e "RAILS_ENV=test" web rake cucumber
 
       # Circle CI -> Heroku access
