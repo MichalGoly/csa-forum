@@ -36,3 +36,28 @@ Then("the current page should contain a new row containing the data:") do |table
   end
   table.diff!(results)
 end
+
+And("a different user {string} with password {string} logs in") do |username, password|
+  visit("session/new")
+  fill_in("Login", :with => username)
+  fill_in("Password", :with => password)
+  click_button("Logon")
+end
+
+When("the user replies to the first post with the default title and the body {string}") do |body|
+  topics = Topic.all
+  visit("/topics/#{topics[0].id}")
+  within ".card-action" do
+    click_on "Reply"
+  end
+  fill_in("body", :with => body)
+  click_button("Submit")
+end
+
+Then("the current thread page should include {string} posts with the 2nd indented by an offset of {string} and author {string}") do |number, offset, author|
+  main_element = find('main')
+  c = main_element.all("div.card").count
+  expect(c).to eq(number.to_i)
+  page.should have_css("div.offset-s#{offset}")
+  page.should have_text(author)
+end
