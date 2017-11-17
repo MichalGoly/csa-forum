@@ -15,9 +15,9 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
-  <div class="field">
+  <div class="input-field">
     <%= form.label :body %>
-    <%= form.text_area(:body) %>
+    <%= form.text_area(:body, class: 'materialize-textarea')  %>
   </div>
   <p>
      <input type="checkbox" id="anonymous" name="anonymous"/>
@@ -25,7 +25,10 @@
    </p>
   <%= form.text_field :parent_id, id: :post_parent_id, :value => @post.parent_id, :hidden => true %>
   <%= form.text_field :topic_id, id: :post_parent_id, :value => @post.topic_id, :hidden => true %>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <div class="row">
+    <div class="col s1">
+      <div class="actions">
+        <%= form.submit 'Submit', class: 'btn' %>
+      </div>
+    </div>
 <% end %>
