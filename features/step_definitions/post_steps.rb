@@ -19,7 +19,7 @@ Then("the current page should contain a new row containing the data:") do |table
   # https://gist.github.com/greis/1711522
   table_element = find('table#topics-table')
   headers = table_element.all('thead th').map(&:text)
-  # remove Date and the empy header on the very right
+  # remove Date and the empty header on the very right
   headers.delete_at(5)
   headers.delete_at(0)
   results = table_element.all('tbody tr').map do |tr|

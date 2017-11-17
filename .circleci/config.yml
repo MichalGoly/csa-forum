@@ -39,6 +39,11 @@ jobs:
           command: |
             docker-compose run -e "RAILS_ENV=test" web rake test
 
+      - run:
+          name: cucumber tests
+          command: |
+            docker-compose run -e "RAILS_ENV=test" web rake cucumber
+
       # Circle CI -> Heroku access
       - add_ssh_keys:
           fingerprints:
