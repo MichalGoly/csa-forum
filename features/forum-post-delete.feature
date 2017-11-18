@@ -14,9 +14,11 @@ Feature: Forum post delete
 
    Scenario: User cannot delete posts he has not created
       Given that user "cwl5" with password "secret" has logged in
+      And user goes to the forum page
       Then he should not be able to delete the thread titled "How can I add cucumber tests?"
       And he should not be able to delete the thread titled "Deployment to Heroku"
 
    Scenario: Admin can delete everything
       Given that user "admin" with password "taliesin" has logged in
+      And user goes to the forum page
       Then he should be able to delete all threads

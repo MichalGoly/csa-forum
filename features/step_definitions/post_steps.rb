@@ -1,5 +1,5 @@
 Given("that user {string} with password {string} has logged in") do |user, password|
-  visit("session/new")
+  visit("/session/new")
   fill_in("Login", :with => user)
   fill_in("Password", :with => password)
   click_button("Logon")
