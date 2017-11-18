@@ -19,3 +19,22 @@ Then("the page should be on the page number {string} containing {string} threads
   current_url.should == topics_url(page: page_no)
   find("tbody").should have_css("tr", :count => threads_no)
 end
+
+Given("user navigates to the second page") do
+  steps %Q{
+    Given user goes to the forum page
+    And he uses the pagination to go to view the next page of posts
+  }
+end
+
+Given("opens the top thread") do
+  within "tbody" do
+    click_link("Show", match: :first)
+  end
+end
+
+Given("clicks {string}") do |btn|
+  within "main" do
+    click_link(btn)
+  end
+end
