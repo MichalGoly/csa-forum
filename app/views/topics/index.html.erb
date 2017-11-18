@@ -2,15 +2,15 @@
 
 <h2>Forum</h2>
 
-<%= link_to 'Create Thread', new_topic_path, class: 'btn' %>
-<table class="bordered">
+<%= link_to 'Create Thread', new_topic_path, class: 'btn', id: 'create-thread' %>
+<table id="topics-table" class="bordered">
   <thead>
     <tr>
       <th>Date</th>
       <th>Title</th>
       <th>Author</th>
-      <th>Unread Posts</th>
-      <th>Total Posts</th>
+      <th>Unread posts</th>
+      <th>Total number posts</th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -23,7 +23,7 @@
         <% if topic.user %>
           <td><%= topic.user.firstname %> <%= topic.user.surname %></td>
         <% else %>
-          <td>Anonymous</td>
+          <td>anonymous</td>
         <% end %>
         <%
            u_posts = topic.unread_posts(current_user.id)

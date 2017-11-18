@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, id: "title" %>
   </div>
   <div class="input-field">
     <%= form.label :body %>
-    <%= form.text_area(:body, class: 'materialize-textarea')  %>
+    <%= form.text_area(:body, class: 'materialize-textarea', id: "body")  %>
   </div>
   <p>
      <input type="checkbox" id="anonymous" name="anonymous"/>
