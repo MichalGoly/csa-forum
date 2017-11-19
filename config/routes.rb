@@ -6,13 +6,12 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  # At the moment we only provide a JSON web service
-  # API for user account managment. This is provided
-  # as an example. See the rest_client folder.
+  # the REST API routes
   namespace :api, defaults: {format: :json} do
     resources :users, except: [:new, :edit] do
       get 'search', on: :collection
     end
+    resources :topics, except: [:new, :edit, :destroy, :update]
   end
 
   # No point allowing the editing or update of an existing broadcast

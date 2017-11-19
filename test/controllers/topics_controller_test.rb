@@ -1,9 +1,7 @@
 require 'test_helper'
 
 class TopicsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @topic = topics(:one)
-  end
+
 
   # test "should get index" do
   #   get topics_url

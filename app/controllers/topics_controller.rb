@@ -2,14 +2,12 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   # GET /topics
-  # GET /topics.json
   def index
     @topics = Topic.paginate(page: params[:page], per_page: params[:per_page])
                 .order('date DESC')
   end
 
   # GET /topics/1
-  # GET /topics/1.json
   def show
     @current_page = params[:page]
   end
@@ -24,43 +22,35 @@ class TopicsController < ApplicationController
   end
 
   # POST /topics
-  # POST /topics.json
   def create
     @topic = Topic.new(topic_params)
 
     respond_to do |format|
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
-        format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /topics/1
-  # PATCH/PUT /topics/1.json
   def update
     respond_to do |format|
       if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
-        format.json { render :show, status: :ok, location: @topic }
       else
         format.html { render :edit }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /topics/1
-  # DELETE /topics/1.json
   def destroy
     respond_to do |format|
       if is_owner_or_admin(@topic)
         @topic.destroy
         format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
-        format.json { head :no_content }
       else
         format.html { redirect_to topics_url, notice: 'You are not the owner of this thread!' }
       end
