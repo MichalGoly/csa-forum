@@ -28,10 +28,8 @@ class TopicsController < ApplicationController
     respond_to do |format|
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
-        # format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
-        # format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,10 +39,8 @@ class TopicsController < ApplicationController
     respond_to do |format|
       if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
-        # format.json { render :show, status: :ok, location: @topic }
       else
         format.html { render :edit }
-        # format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,7 +51,6 @@ class TopicsController < ApplicationController
       if is_owner_or_admin(@topic)
         @topic.destroy
         format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
-        # format.json { head :no_content }
       else
         format.html { redirect_to topics_url, notice: 'You are not the owner of this thread!' }
       end

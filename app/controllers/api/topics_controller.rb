@@ -1,8 +1,6 @@
 class API::TopicsController < API::ApplicationController
 
-  # before_action :set_current_page, except: [:index]
   before_action :set_topic, only: [:show]
-  # before_action :admin_required, only: [:index, :destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :show_record_not_found
 
