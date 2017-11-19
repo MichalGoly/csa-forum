@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :edit] do
       get 'search', on: :collection
     end
-    resources :topics, except: [:new, :edit]
+    resources :topics, except: [:new, :edit, :destroy, :update]
   end
 
   # No point allowing the editing or update of an existing broadcast

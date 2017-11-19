@@ -1,11 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  title: MyString
+  title: My title 1
   date: 2017-11-12 13:41:10
-  user: one
+  user: user_one
 
 two:
-  title: MyString
+  title: My title 2
   date: 2017-11-12 13:41:10
-  user: two
+  user: user_two

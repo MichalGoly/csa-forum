@@ -1,7 +1,7 @@
 class API::TopicsController < API::ApplicationController
 
   # before_action :set_current_page, except: [:index]
-  before_action :set_topic, only: [:show, :update]
+  before_action :set_topic, only: [:show]
   # before_action :admin_required, only: [:index, :destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :show_record_not_found
@@ -25,6 +25,10 @@ class API::TopicsController < API::ApplicationController
 
   # POST /api/topics.json
   def create
+    # 1. Create a new post based on the params
+    # 2. Assign a date and user if required
+    # 3. Create and assign a topic for the post
+    # 4. Save all
     @post = Post.new(post_params)
     if !params.has_key?(:anonymous)
         @post.user = current_user.user
@@ -51,48 +55,10 @@ class API::TopicsController < API::ApplicationController
     end
   end
 
-  # PATCH/PUT /api/topics/1.json
-  def update
-    if current_user.id == @user.id || is_admin?
-      respond_to do |format|
-        format.json do
-          @image = @user.image
-          @service = ImageService.new(@user, @image)
-          if @service.update_attributes(user_params, params[:image_file])
-            head :created
-          else
-            render json: @user.errors, status: :unprocessable_entity
-          end
-        end
-      end
-    else
-      indicate_illegal_request I18n.t('users.not-your-account')
-    end
-  end
-
-  # DELETE /api/topics/1.json
-  def destroy
-    respond_to do |format|
-      format.json do
-        @user.destroy
-        head :no_content
-      end
-    end
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_topic
     @topic = Topic.find(params[:id])
-  end
-
-  def indicate_illegal_request(message)
-    respond_to do |format|
-      format.json {
-        render json: "{#{message}}",
-               status: :unprocessable_entity
-      }
-    end
   end
 
   def show_record_not_found(exception)
