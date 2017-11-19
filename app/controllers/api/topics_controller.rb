@@ -25,25 +25,28 @@ class API::TopicsController < API::ApplicationController
 
   # POST /api/topics.json
   def create
+    @post = Post.new(post_params)
+    if !params.has_key?(:anonymous)
+        @post.user = current_user.user
+    end
+    current_date = Time.now
+
+    if @post.topic.nil?
+      # post in not a reply to a different post
+      @topic = Topic.new
+      @topic.title = @post.title
+      @topic.user = @post.user
+      @topic.date = current_date
+      @topic.save
+      @post.topic = @topic
+    end
+    @post.date = current_date
+
     respond_to do |format|
-      format.json do
-        @user = User.new(user_params)
-        user_detail = UserDetail.new(user_detail_params)
-        @user.user_detail = user_detail
-
-        # Only create a new image if the :image_file parameter
-        # was specified
-        @image = Image.new(photo: params[:image_file]) if params[:image_file]
-
-        # The ImageService model wraps up application logic to
-        # handle saving images correctly
-        @service = ImageService.new(@user, @image)
-
-        if @service.save # Will attempt to save user and image
-          head :created, location: api_user_url(@user)
-        else
-          render json: @user.errors, status: :unprocessable_entity
-        end
+      if @post.save
+        format.json { render :show, status: :created, location: @topic }
+      else
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -82,7 +85,7 @@ class API::TopicsController < API::ApplicationController
   def set_topic
     @topic = Topic.find(params[:id])
   end
-  
+
   def indicate_illegal_request(message)
     respond_to do |format|
       format.json {
@@ -108,8 +111,8 @@ class API::TopicsController < API::ApplicationController
   # with non-form based requests. Further investigation is required. Consequently,
   # the data is sent in a unnested form and the objects created and tied
   # together explicitly in the create action.
-  def user_params
-    params.require(:user).permit(:title, :body, :anonymous)
+  def post_params
+    params.require(:post).permit(:title, :body, :date, :user_id, :parent_id, :topic_id)
   end
 
 end
