@@ -4,7 +4,7 @@ require 'base64'
 require 'io/console'
 class ForumRestClient
 
-  #@@DOMAIN = 'https://csa-web-service-cloftus.c9users.io'
+  # @@DOMAIN = 'https://mwg2forum.herokuapp.com'
   @@DOMAIN = 'http://localhost:3000'
 
   @user = nil
@@ -161,5 +161,5 @@ class ForumRestClient
   end
 end
 
-client = CSARestClient.new
+client = ForumRestClient.new
 client.run_menu
