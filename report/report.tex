@@ -3,9 +3,6 @@
 \setlength{\textwidth}{6.2in}
 \setlength{\topmargin}{-0.2in} \setlength{\textheight}{8.8in}
 
-\usepackage{graphicx}
-\graphicspath{ {/home/michal/development/uni/ruby/assignment1/report/img/} }
-
 \title{SE31520 Assignment 1 - Part 2: Forum for the CSA}
 \author{Michal Wojciech Goly [mwg2]}
 \date{30th November 2017}
@@ -17,10 +14,38 @@
 \newpage
 
 \section{Introduction}
-This report describes the architecture of the Weblog application, extended as
-part of the SE31520 module at Aberystwyth University.
+This document describes the architecture of the forum feature added to the CSA application
+as part of the assignment submission for the SE31520 module at Aberystwyth University. The
+following sections describe the design and implementation choices made during the development,
+alongside testing performed and the implementation of the REST API. The report finishes with
+the summary of the activities performed to achieve "flair" marks and sums up the work with
+a critical evaluation.
 
+\section{The CSA application}
 
+\section{The REST client}
+
+\section{Cucumber testing}
+
+\section{Flair}
+\subsection{The overall look and feel}
+Materialize CSS
+
+\subsection{Docker}
+Docker and Docker Compose of test and dev environments
+
+\subsection{Build and extra testing}
+Circle CI, running integration, cucumber tests, deployment of master to a production environment
+
+\subsection{Heroku}
+link to the deployment env
+
+\subsection{Feature branches and Kanban}
+the development process, pull requests, screenshot of the kanban board
+
+\section{Critical evaluation}
+- Could have added controller tests, but did not know how to mock sessions in rails 5
+- Improve the look and feel of the rest of the app
 
 % \begin{thebibliography}{1}
 %

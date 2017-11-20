@@ -1,1 +1,11 @@
 \contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}The CSA application}{2}
+\contentsline {section}{\numberline {3}The REST client}{2}
+\contentsline {section}{\numberline {4}Cucumber testing}{2}
+\contentsline {section}{\numberline {5}Flair}{2}
+\contentsline {subsection}{\numberline {5.1}The overall look and feel}{2}
+\contentsline {subsection}{\numberline {5.2}Docker}{2}
+\contentsline {subsection}{\numberline {5.3}Build and extra testing}{2}
+\contentsline {subsection}{\numberline {5.4}Heroku}{2}
+\contentsline {subsection}{\numberline {5.5}Feature branches and Kanban}{2}
+\contentsline {section}{\numberline {6}Critical evaluation}{2}
