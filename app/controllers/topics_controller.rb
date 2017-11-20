@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :destroy]
 
   # GET /topics
   def index
@@ -17,10 +17,6 @@ class TopicsController < ApplicationController
     @post = Post.new
   end
 
-  # GET /topics/1/edit
-  def edit
-  end
-
   # POST /topics
   def create
     @topic = Topic.new(topic_params)
@@ -30,17 +26,6 @@ class TopicsController < ApplicationController
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
       else
         format.html { render :new }
-      end
-    end
-  end
-
-  # PATCH/PUT /topics/1
-  def update
-    respond_to do |format|
-      if @topic.update(topic_params)
-        format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
-      else
-        format.html { render :edit }
       end
     end
   end
