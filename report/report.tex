@@ -3,6 +3,9 @@
 \setlength{\textwidth}{6.2in}
 \setlength{\topmargin}{-0.2in} \setlength{\textheight}{8.8in}
 
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
 \title{SE31520 Assignment 1 - Part 2: Forum for the CSA - version 1}
 \author{Michal Wojciech Goly [mwg2]}
 \date{30th November 2017}
@@ -22,7 +25,15 @@ the summary of the activities performed to achieve "flair" marks and sums up the
 a critical evaluation.
 
 \section{The CSA application}
+I started the development by familiarising myself with the initial CSA architecture and
+thinking about different ways I could add the forum functionality required. The Entity Relationship
+Diagram below depicts the overall database schema of the final system, but my initial low fidelity
+sketch included only the \texttt{Topics}, \texttt{Posts} and \texttt{Users} tables.
 
+\subsection{Entity Relationship Diagram}
+\begin{center}
+  \includegraphics[scale=0.5]{schema}
+\end{center}
 
 \section{The REST client}
 
