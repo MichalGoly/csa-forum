@@ -35,6 +35,35 @@ sketch included only the \texttt{Topics}, \texttt{Posts} and \texttt{Users} tabl
   \includegraphics[scale=0.5]{schema}
 \end{center}
 
+\subsection{The forum feature}
+Once the initial planning phase has finished, I have created a GitHub repository for the project,
+created work items, Dockerised the project, integrated it with Circle CI and continuously deployed the \texttt{master}
+branch to Heroku (I have covered the details in the \textit{Flair} section of this document).
+
+Having cleaned up the CSS and fixed the broken migrations provided (timestamps were in a wrong order),
+I have scaffolded the \texttt{Topic} migration, model, controller and views. I then added a
+\textit{Forum} tab in the navbar and scaffolded the \texttt{Post} in a similar fashion. I wanted
+to generate as much as possible early on and then remove "dead code" once the forum functionality
+was implemented. The scaffolded code was not ideal and I had to manually define the \texttt{belongs\_to}
+and \texttt{has\_many} relations between the models. I also used self joins to make sure each \texttt{Post}
+could have a parent to represent posts' replies.
+
+New topics can be created by calling the \texttt{/topics/new} route which will trigger the \texttt{TopicsController\#new}
+action. Now, instead of creating a new \texttt{Topic} model and passing it to the view, I decided to create
+a \texttt{Post}, pass it to the view and use partial rendering to reuse the \texttt{/views/posts/\_form.html.erb}
+view for both \texttt{Topic} creation and \texttt{Post} replies later on. Logically, \texttt{Topic} cannot exist on its own
+therefore such approach seemed optimal to minimise the amount of code written.
+
+Implementation of the post replies and the associated indenting was argubly the most interesting
+part of the assignment. The \texttt{/views/topics/show.html.erb} view uses material design cards to
+render each post. The indentation was achieved using the Materialize CSS\cite{1} grid system.
+The \texttt{Topic\#post\_wrappers} method iterates over the posts of a topic, recursively sorts
+them and calculates the offsets based on the amount of parents above a specific node. These wrappers
+are then returned as a simple array back to the view and rendered appropriately.
+
+\subsection{Redesign for the REST API}
+
+
 \section{The REST client}
 
 \section{Cucumber testing}
@@ -59,11 +88,11 @@ the development process, pull requests, screenshot of the kanban board
 - Could have added controller tests, but did not know how to mock sessions in rails 5
 - Improve the look and feel of the rest of the app
 
-% \begin{thebibliography}{1}
-%
-% \bibitem{1} \emph{Active Record Basics}, guides.rubyonrails.org [Online],
-% Available: http://guides.rubyonrails.org/active\_record\_basics.html, [Accessed: Oct. 22, 2017].
-%
-% \end{thebibliography}
+\begin{thebibliography}{1}
+
+\bibitem{1} \emph{Materialize CSS}, materializecss.com [Online],
+Available: http://materializecss.com/grid.html, [Accessed: Nov. 22, 2017].
+
+\end{thebibliography}
 
 \end{document}
