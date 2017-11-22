@@ -17,19 +17,6 @@ class TopicsController < ApplicationController
     @post = Post.new
   end
 
-  # POST /topics
-  def create
-    @topic = Topic.new(topic_params)
-
-    respond_to do |format|
-      if @topic.save
-        format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
-      else
-        format.html { render :new }
-      end
-    end
-  end
-
   # DELETE /topics/1
   def destroy
     respond_to do |format|

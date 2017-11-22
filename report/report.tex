@@ -3,6 +3,7 @@
 \setlength{\textwidth}{6.2in}
 \setlength{\topmargin}{-0.2in} \setlength{\textheight}{8.8in}
 
+\usepackage{pdflscape}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 
@@ -60,6 +61,19 @@ render each post. The indentation was achieved using the Materialize CSS\cite{1}
 The \texttt{Topic\#post\_wrappers} method iterates over the posts of a topic, recursively sorts
 them and calculates the offsets based on the amount of parents above a specific node. These wrappers
 are then returned as a simple array back to the view and rendered appropriately.
+
+Finally, I have added the anonymous posting by treating \texttt{nil} valued \texttt{User} of a \texttt{Topic} or \texttt{Post}
+appropriately, the total count of posts for each \texttt{Topic} and the unread posts counter. This required the creation of a new
+table in the database with the associated model \texttt{PostsRead}. I took the simple approach of storing 3 foreign keys
+for a \texttt{User}, \texttt{Topic} and \texttt{Title}. This allowed me to add new records to this table each time user
+accessed the \texttt{/views/topics/show.html.erb} view and render the counter appropriately.
+
+% rotate the page
+\begin{landscape}
+  \subsection{Controllers Diagram}
+
+  \subsection{Models Diagram}
+\end{landscape}
 
 \subsection{Redesign for the REST API}
 
