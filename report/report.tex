@@ -49,7 +49,7 @@ was implemented. The scaffolded code was not ideal and I had to manually define 
 and \texttt{has\_many} relations between the models. I also used self joins to make sure each \texttt{Post}
 could have a parent to represent posts' replies.
 
-New topics can be created by calling the \texttt{/topics/new} route which will trigger the \texttt{TopicsController\#new}
+New topics can be created by calling the \texttt{/topics/new} route which will trigger the \\ \texttt{TopicsController\#new}
 action. Now, instead of creating a new \texttt{Topic} model and passing it to the view, I decided to create
 a \texttt{Post}, pass it to the view and use partial rendering to reuse the \texttt{/views/posts/\_form.html.erb}
 view for both \texttt{Topic} creation and \texttt{Post} replies later on. Logically, \texttt{Topic} cannot exist on its own
@@ -78,7 +78,50 @@ accessed the \texttt{/views/topics/show.html.erb} view and render the counter in
 \end{landscape}
 
 \subsection{Redesign for the REST API}
+In order to implement the REST API for the forum feature I have created a new controller
+under the api namespace called \texttt{API::TopicsController}. It contained three
+actions to manage incomming requests. \texttt{API::TopicsController\#index}, \texttt{API::TopicsController\#show}
+and \texttt{API::TopicsController\#create} corresponded to \texttt{/api/topics}, \texttt{/api/topics/:id} and
+\texttt{/api/topics} routes respectively. Furthermore, I have removed the \texttt{format.json} calls from the
+\texttt{TopicsController}, created \texttt{json.jbuilder} views and updated the \texttt{config/routes.rb}.
+Finally, I have added integration tests to make sure my implementation was correct.
 
+\subsection{REST API interface}
+The REST API is using the Basic Auth and \$USERNAME and \$PASSWORD have to be exchanged for actual credentials in the examples below.
+
+\subsubsection{Listing all threads}
+
+\textbf{GET} \texttt{/api/topics}
+\begin{enumerate}
+  \item Listing the 8 most recent threads in the forum.
+
+    \texttt{curl http://localhost:3000/api/topics -u \$USERNAME:\$PASSWORD}
+  \item Listing all threads in the forum.
+
+    \texttt{curl http://localhost:3000/api/topics?all=true -u \$USERNAME:\$PASSWORD}
+\end{enumerate}
+
+\subsubsection{Get details about a specific thread}
+
+\textbf{GET} \texttt{/api/topics/:id}
+\begin{enumerate}
+  \item Get a single thread by its ID
+
+    \texttt{curl http://localhost:3000/api/topics/40 -u \$USERNAME:\$PASSWORD}
+\end{enumerate}
+
+\subsubsection{Creating new threads}
+
+\textbf{POST} \texttt{/api/topics}
+
+\begin{enumerate}
+  \item Creating a new thread containing a single post titled "I need help" with body "What is Java?".
+
+    \texttt{curl -d '\{"post":\{"title":"I need help", "body":"What is Java?"\}\}' -X POST -H "Content-Type: application/json" http://localhost:3000/api/topics}\\ \texttt{-u \$USERNAME:\$PASSWORD}
+  \item Creating the same post as an anonymous user.
+
+    \texttt{curl -d '\{"post":\{"title":"I need help", "body":"What is Java?"\}, "anonymous":"true"\}' -X POST -H "Content-Type: application/json" http://localhost:3000/api/topics}\\ \texttt{-u \$USERNAME:\$PASSWORD}
+\end{enumerate}
 
 \section{The REST client}
 
