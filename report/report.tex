@@ -148,23 +148,46 @@ more context to all scenarios without repeating myself.
 Finally, I created the \texttt{features/forum-pagination.feature} with the corresponding
 steps to make sure pagination behaved in the expected manner. This also involved testing
 if clicking a \texttt{Back} button takes user back to the expected page as required in the
-requirements specification of the assignment. 
+requirements specification of the assignment.
 
 \section{Flair}
 \subsection{The overall look and feel}
-Materialize CSS
+I have removed most of the CSS provided and replaced it with the MaterializeCSS\cite{1}
+to make the user interface look more modern.
 
 \subsection{Docker}
-Docker and Docker Compose of test and dev environments
+I have dockerised the CSA for both testing and development purposes. This involved removing the
+SQLite database provided and swapping the sqlite gem for a postgres one. I also had to
+fix the broken migrations provided, as the timestamps were in a wrong order and one of the
+tables was referenced before it even existed. To learn more investigate the \texttt{Dockerfile}
+and \texttt{docker-compose.yml} files.
 
 \subsection{Build and extra testing}
-Circle CI, running integration, cucumber tests, deployment of master to a production environment
+Having dockerised the app I wanted to deploy it to production as soon as possible before even
+attempting to implement the forum feature. I'm a big fan of Continuous Integration as it
+ensures my code can be constantly tested, deployed and enables me to perform heavy refactoring
+without worrying I break anything.
+
+As mentioned before, I have created issues on GitHub with the aim of creating feature branches,
+running tests and making pull requests to close issues down. I have integrated my GitHub repository
+with Circle CI to continuously test and deploy my code to production. The \texttt{.circleci/config.yml}
+contains the build definition and is quite straightforward to follow. Circle CI starts by installing
+the docker-compose, it then builds the docker-compose network containing my dockerised CSA application and
+the postgres container for testing purposes. Afterwards, the build agent sets up the database for testing,
+runs all the integraion tests (these include REST API integration tests I have mentioned before),
+cucumber tests and sets up an SSH fingerprint to access Heroku for deployment.
+
+When a feature-branch is pushed to GitHub all tests run to make sure code is correct. If a
+pull request is merged into the \texttt{master} branch on the other hand, the final step
+in the build runs and deploys the CSA to Heroku using the \texttt{heroku-container-registry}.
+Each deployment is followed by a \texttt{rake db:migrate} call to make sure the remote database
+schema is up to date.
 
 \subsection{Heroku}
-link to the deployment env
-
-\subsection{Feature branches and Kanban}
-the development process, pull requests, screenshot of the kanban board
+The application has been deployed to production and can be accessed here: https://mwg2forum.herokuapp.com/.
+The production postgresql database is provided as a Heroku addon, because Heroku does not allow
+multi container Docker environemnts to run together. Please see \texttt{/config/database.yml} to find
+out more.
 
 \section{Critical evaluation}
 - Could have added controller tests, but did not know how to mock sessions in rails 5
