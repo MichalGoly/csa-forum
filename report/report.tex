@@ -124,8 +124,31 @@ The REST API is using the Basic Auth and \$USERNAME and \$PASSWORD have to be ex
 \end{enumerate}
 
 \section{The REST client}
+The REST client has been developed using Ruby and can be started by calling \texttt{ruby forum\_rest\_client.rb}.
+The implementation has been heavily inspired by the users REST client provided as part of the assignment.
+The end user has to login using one of the accounts in the system. The credentials are then used to authenticate
+with the REST API using Basic Authentication. User can list the first 8 threads, all threads, display a specific
+thread by id and create new ones using the command line interface.
 
 \section{Cucumber testing}
+I started by running the cucumber tests with the feature file provided and implementing
+missing step definitions. Implementing steps for the \textit{Create a thread post} scenario
+provided as part of the assignment was a bit tricky with my implementation, as the
+threads table contains two additional columns: the date of the thread creation and the
+empty columns for the \textit{Destroy} and \textit{Show} links. Nevertheless, I managed to
+remove them from the hash returned by the view and successfully compare with the expected
+results without editing the scenario.
+
+I also added the \textit{Reply to the thread post} scenario to make sure replying to
+posts worked properly, and more importantly new posts were indented properly. Afterwards,
+I created the \texttt{features/forum-post-delete.feature} to ensure posts can only be deleted
+by owners or the admin. I also took the advantage of the cucumber background to give
+more context to all scenarios without repeating myself.
+
+Finally, I created the \texttt{features/forum-pagination.feature} with the corresponding
+steps to make sure pagination behaved in the expected manner. This also involved testing
+if clicking a \texttt{Back} button takes user back to the expected page as required in the
+requirements specification of the assignment. 
 
 \section{Flair}
 \subsection{The overall look and feel}

@@ -16,5 +16,5 @@
 \contentsline {subsection}{\numberline {5.2}Docker}{7}
 \contentsline {subsection}{\numberline {5.3}Build and extra testing}{7}
 \contentsline {subsection}{\numberline {5.4}Heroku}{7}
-\contentsline {subsection}{\numberline {5.5}Feature branches and Kanban}{7}
-\contentsline {section}{\numberline {6}Critical evaluation}{7}
+\contentsline {subsection}{\numberline {5.5}Feature branches and Kanban}{8}
+\contentsline {section}{\numberline {6}Critical evaluation}{8}
