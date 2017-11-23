@@ -1,5 +1,19 @@
 # CSA - Forum - mwg2
 
+# Running locally
+```
+$ docker-compose build
+$ docker-compose up
+
+From a different terminal:
+
+$ docker-compose run web rake:create
+$ docker-compose run web rake:migrate
+$ docker-compose run web rake:seed
+
+Go to http://localhost:3000
+```
+
 # REST API interface
 The REST API is using the Basic Auth and $USERNAME and $PASSWORD have to be exchanged for actual credentials in the examples below.
 

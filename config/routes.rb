@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   # This is just to support the landing page
   get 'home', to: 'home#index', as: :home
 
-  resources :topics, except: [:edit, :update]
+  resources :topics, except: [:edit, :update, :create]
 
   # no point showing all posts in a separate page or showing specific posts
   resources :posts, except: [:index, :show, :edit]
